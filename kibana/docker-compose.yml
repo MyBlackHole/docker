@@ -1,0 +1,9 @@
+version: '2'
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.0.0
+    ports:
+      - 5601:5601
+    volumes:
+      # 数据库文件挂载到主机上
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml

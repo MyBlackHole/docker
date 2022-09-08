@@ -1,0 +1,27 @@
+# vim /data/kibana/kibana.yml
+
+#
+# ** THIS IS AN AUTO-GENERATED FILE **
+#
+
+# Default Kibana configuration for docker target
+server.name: kibana
+server.host: "0.0.0.0"
+server.port: 5601
+# elasticsearch.hosts: [ "http://192.168.1.59:9200" ]
+# elasticsearch.requestTimeout: 60000
+monitoring.ui.container.elasticsearch.enabled: true
+# kibana.index: ".kibana"
+i18n.locale: "zh-CN"
+# elasticsearch.username: "elastic"
+# elasticsearch.password: "8RV808u50gIn79xFASEt41su"
+# xpack.reporting.encryptionKey: "a_random_string"
+# xpack.security.encryptionKey: "something_at_least_32_characters"
+
+
+
+# This section was automatically generated during setup.
+elasticsearch.hosts: ['http://192.168.1.58:9200']
+elasticsearch.username: root
+elasticsearch.password: 3edc#EDC
+

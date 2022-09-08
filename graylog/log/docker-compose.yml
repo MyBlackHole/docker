@@ -1,0 +1,10 @@
+version: '3'
+services:
+  minio_log_test:
+    image: minio/minio
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://192.168.5.229:12201"
+        tag: "minio_log_test"
+    command: ["server", "data"]
