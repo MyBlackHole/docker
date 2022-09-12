@@ -1,0 +1,30 @@
+version: '3'
+
+######## 项目依赖的环境，启动项目之前要先启动此环境 #######
+######## The environment that the project depends on, starting this environment before starting the project #######
+
+services:
+
+  #查看elasticsearch数据 - Kibana to view Elasticsearch data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.4
+    container_name: kibana
+    environment:
+      - elasticsearch.hosts=http://elasticsearch:9200
+      - TZ=Asia/Shanghai
+    restart: always
+    networks:
+      - looklook_net
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+
+networks:
+  looklook_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+

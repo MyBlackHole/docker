@@ -1,0 +1,33 @@
+version: '3'
+
+######## 项目依赖的环境，启动项目之前要先启动此环境 #######
+######## The environment that the project depends on, starting this environment before starting the project #######
+
+services:
+
+  #消费kafka中filebeat收集的数据输出到es - The data output collected by FileBeat in Kafka is output to ES
+  go-stash:
+    image: kevinwan/go-stash:1.0 # if you "macOs intel" or "linux amd"
+#    image: kevinwan/go-stash:1.0-arm64 #  if you "macOs m1" or "linux arm"
+    container_name: go-stash
+    environment:
+      # 时区上海 - Time zone Shanghai (Change if needed)
+      TZ: Asia/Shanghai
+    user: root
+    restart: always
+    volumes:
+      - ./etc:/app/etc
+    networks:
+      - looklook_net
+    depends_on:
+      - elasticsearch
+      - kafka
+
+
+networks:
+  looklook_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+

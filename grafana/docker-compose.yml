@@ -1,0 +1,32 @@
+version: '3'
+
+######## 项目依赖的环境，启动项目之前要先启动此环境 #######
+######## The environment that the project depends on, starting this environment before starting the project #######
+
+services:
+
+  #查看prometheus监控数据 - Grafana to view Prometheus monitoring data
+  grafana:
+    image: grafana/grafana:8.0.6
+    container_name: grafana
+    hostname: grafana
+    user: root
+    environment:
+      # 时区上海 - Time zone Shanghai (Change if needed)
+      TZ: Asia/Shanghai
+    restart: always
+    volumes:
+        - ./data:/var/lib/grafana
+    ports:
+        - "3001:3000"
+    networks:
+        - looklook_net
+
+
+networks:
+  looklook_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
